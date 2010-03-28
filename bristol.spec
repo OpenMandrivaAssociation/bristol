@@ -1,6 +1,6 @@
 %define name    bristol
 %define version 0.50.2
-%define release %mkrel 1
+%define release %mkrel 2
 
 Name:       %{name}
 Summary:    Synthesiser Emulator Pack
@@ -10,8 +10,6 @@ Release:    %{release}
 URL:        http://%{name}.sourceforge.net/
 Source:     http://prdownloads.sourceforge.net/bristol/%{name}-%{version}.tar.gz
 Source1:    bristol.desktop
-Patch0:     bristol_makefile_am.patch   
-Patch1:     libbristol_makefile_am.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 License:    GPLv2
 Group:      Sound
@@ -23,7 +21,6 @@ BuildRequires:  alsa-lib-devel
 BuildRequires:  libsndfile-devel
 
 Requires:   jackit
-
 
 %description
 Bristol emulates severals Vintage Synthesizer Keyboards : 
@@ -214,18 +211,18 @@ Requires: bristol
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
 ./configure CONFIG_SHELL=/bin/bash \
-    --prefix=%{_datadir} \
+    --prefix=%{_prefix} \
     --libdir=%{_libdir} \
     --bindir=%{_bindir} \
     --with-gnu-ld \
     --enable-sem-open \
     --enable-static=no
-
+    
+perl -pi -e 's/-march=core2//g' bristol/Makefile.am
+perl -pi -e 's/-march=core2//g' libbristol/Makefile.am
 %make
 
 %install
