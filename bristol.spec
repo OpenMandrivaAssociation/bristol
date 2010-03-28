@@ -1,6 +1,6 @@
 %define name    bristol
 %define version 0.50.2
-%define release %mkrel 2
+%define release %mkrel 3
 
 Name:       %{name}
 Summary:    Synthesiser Emulator Pack
@@ -213,6 +213,8 @@ Requires: bristol
 %setup -q
 
 %build
+perl -pi -e 's/-march=core2//g' bristol/Makefile.am
+perl -pi -e 's/-march=core2//g' libbristol/Makefile.am
 ./configure CONFIG_SHELL=/bin/bash \
     --prefix=%{_prefix} \
     --libdir=%{_libdir} \
@@ -221,8 +223,7 @@ Requires: bristol
     --enable-sem-open \
     --enable-static=no
     
-perl -pi -e 's/-march=core2//g' bristol/Makefile.am
-perl -pi -e 's/-march=core2//g' libbristol/Makefile.am
+
 %make
 
 %install
