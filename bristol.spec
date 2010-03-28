@@ -24,6 +24,7 @@ BuildRequires:  libsndfile-devel
 
 Requires:   jackit
 
+
 %description
 Bristol emulates severals Vintage Synthesizer Keyboards : 
 Various Moog, Sequencial Circuits, Oberheim,
