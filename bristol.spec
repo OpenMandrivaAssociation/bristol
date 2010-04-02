@@ -1,6 +1,6 @@
 %define name    bristol
-%define version 0.50.2
-%define release %mkrel 3
+%define version 0.50.3
+%define release %mkrel 1
 
 Name:       %{name}
 Summary:    Synthesiser Emulator Pack
@@ -220,7 +220,6 @@ perl -pi -e 's/-march=core2//g' libbristol/Makefile.am
     --libdir=%{_libdir} \
     --bindir=%{_bindir} \
     --with-gnu-ld \
-    --enable-sem-open \
     --enable-static=no
     
 
