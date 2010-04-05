@@ -253,6 +253,7 @@ cp bitmaps/bicon.svg %{buildroot}%{_datadir}/pixmaps/
 %{_bindir}/bristoljackstats
 %{_bindir}/startBristol
 %{_bindir}/bristolnotegen
+%{_bindir}/bristolNRPgen
 %{_datadir}/pixmaps/bicon.svg
 %exclude %{_libdir}/*.la
 %{_libdir}/*
