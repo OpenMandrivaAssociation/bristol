@@ -1,5 +1,5 @@
 %define name    bristol
-%define version 0.50.3
+%define version 0.50.5
 %define release %mkrel 1
 
 Name:       %{name}
