@@ -1,6 +1,6 @@
 %define name    bristol
 %define version 0.50.6
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define major 0
 %define libname %mklibname %{name} %{major}
@@ -23,6 +23,11 @@ BuildRequires:  libsndfile-devel
 
 Requires:       %{libname} >= %{version}
 Requires:       jackit
+
+Obsoletes:      %{name}-aks
+Obsoletes:      %{name}-poly
+Obsoletes:      %{name}-mixer
+Obsoletes:      %{name}-hammond
 
 %description
 Bristol emulates several vintage synthesizers, mainly keyboards: 
@@ -355,7 +360,7 @@ Group:      Sound
 Requires: bristol
 
 %description polysix
-* poly - korg polysix
+* polysix - korg polysix
 
 %files polysix
 %defattr(-,root,root,-)
@@ -368,7 +373,7 @@ Group:      Sound
 Requires: bristol
 
 %description poly800
-* poly - korg poly-800
+* poly800 - korg poly-800
 
 %files poly800
 %defattr(-,root,root,-)
@@ -533,7 +538,13 @@ Requires: bristol
 
 %prep
 %setup -q
-
+chmod  a-x bitmaps/*/*
+chmod  a-x bitmaps/bicon.svg bitmaps/icon_bitmap.xbm
+chmod  a-x COPYING AUTHORS NEWS \
+        memory/mini/readme.txt \
+        memory/mixer/test \
+        memory/mixer/default/memory \
+        memory/mixer/another
 %build
 perl -pi -e 's/-march=core2//g' bristol/Makefile.am
 perl -pi -e 's/-march=core2//g' libbristol/Makefile.am
@@ -549,7 +560,6 @@ perl -pi -e 's/-march=core2//g' libbristol/Makefile.am
 %install
 rm -rf %{buildroot}
 
-perl -p -i -e "s|%{_datadir}/share|%{_datadir}|g" bin/startBristol
 make BRISTOL_DIR=%{_datadir}/bristol DESTDIR=%{buildroot} install
 
 mkdir -p %{buildroot}/etc/xdg/menus/applications-merged
@@ -618,7 +628,7 @@ cp bitmaps/bicon.svg %{buildroot}%{_datadir}/pixmaps/
 %{_datadir}/pixmaps/bicon.svg
 %{_datadir}/bristol
 %{_datadir}/desktop-directories/mandriva-%{name}.directory
-/etc/xdg/menus/applications-merged/%{name}.menu
+%config(noreplace) /etc/xdg/menus/applications-merged/%{name}.menu
 
 %clean
 rm -rf %{buildroot}
