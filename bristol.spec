@@ -1,6 +1,6 @@
 %define name    bristol
-%define version 0.50.6
-%define release %mkrel 2
+%define version 0.60.3
+%define release %mkrel 1
 
 %define major 0
 %define libname %mklibname %{name} %{major}
@@ -552,9 +552,10 @@ perl -pi -e 's/-march=core2//g' libbristol/Makefile.am
     --prefix=%{_prefix} \
     --libdir=%{_libdir} \
     --bindir=%{_bindir} \
+    --mandir=%{buildroot}%{_mandir} \
     --with-gnu-ld \
     --enable-static=no
-    
+  
 %make
 
 %install
@@ -619,6 +620,8 @@ cp bitmaps/bicon.svg %{buildroot}%{_datadir}/pixmaps/
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING* NEWS README
+%docdir %{_mandir}/man1/*
+%{_mandir}/man1/*
 %{_bindir}/brighton
 %{_bindir}/bristol
 %{_bindir}/bristoljackstats
