@@ -1,5 +1,5 @@
 %define name    bristol
-%define version 0.60.3
+%define version 0.60.5
 %define release %mkrel 1
 
 %define major 0
@@ -552,7 +552,6 @@ perl -pi -e 's/-march=core2//g' libbristol/Makefile.am
     --prefix=%{_prefix} \
     --libdir=%{_libdir} \
     --bindir=%{_bindir} \
-    --mandir=%{buildroot}%{_mandir} \
     --with-gnu-ld \
     --enable-static=no
   
