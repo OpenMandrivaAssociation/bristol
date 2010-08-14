@@ -1,5 +1,5 @@
 %define name    bristol
-%define version 0.60.5
+%define version 0.60.6
 %define release %mkrel 1
 
 %define major 0
@@ -540,11 +540,7 @@ Requires: bristol
 %setup -q
 chmod  a-x bitmaps/*/*
 chmod  a-x bitmaps/bicon.svg bitmaps/icon_bitmap.xbm
-chmod  a-x COPYING AUTHORS NEWS \
-        memory/mini/readme.txt \
-        memory/mixer/test \
-        memory/mixer/default/memory \
-        memory/mixer/another
+chmod  a-x COPYING AUTHORS NEWS
 %build
 perl -pi -e 's/-march=core2//g' bristol/Makefile.am
 perl -pi -e 's/-march=core2//g' libbristol/Makefile.am
@@ -625,8 +621,6 @@ cp bitmaps/bicon.svg %{buildroot}%{_datadir}/pixmaps/
 %{_bindir}/bristol
 %{_bindir}/bristoljackstats
 %{_bindir}/startBristol
-%{_bindir}/bristolnotegen
-%{_bindir}/bristolNRPgen
 %{_datadir}/pixmaps/bicon.svg
 %{_datadir}/bristol
 %{_datadir}/desktop-directories/mandriva-%{name}.directory
