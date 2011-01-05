@@ -17,10 +17,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 License:    GPLv2
 Group:      Sound
 
-BuildRequires:  X11-devel
+BuildRequires:  libx11-devel
 BuildRequires:  jackit-devel
 BuildRequires:  alsa-lib-devel
-BuildRequires:  libsndfile-devel
 
 Requires:       %{libname} >= %{version}
 Requires:       jackit
