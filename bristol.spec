@@ -1,6 +1,6 @@
 %define name    bristol
 %define version 0.60.6
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define major 0
 %define libname %mklibname %{name} %{major}
@@ -12,6 +12,7 @@ Release:    %{release}
 
 URL:        http://%{name}.sourceforge.net/
 Source:     http://prdownloads.sourceforge.net/bristol/%{name}-%{version}.tar.gz
+Patch0:		bristol-0.60.6-link.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 License:    GPLv2
 Group:      Sound
@@ -50,9 +51,8 @@ package
 
 %files -n %{libname}
 %defattr(-,root,root,-)
-%{_libdir}/*
-%exclude %{_libdir}/*.la
-
+%{_libdir}/*.so.%major
+%{_libdir}/*.so.%major.*
 
 #--------------
 %package arp2600
@@ -538,17 +538,18 @@ Requires: bristol
 
 %prep
 %setup -q
+%patch0 -p1 -b .link
 chmod  a-x bitmaps/*/*
 chmod  a-x bitmaps/bicon.svg bitmaps/icon_bitmap.xbm
 chmod  a-x COPYING AUTHORS NEWS
+
+perl -pi -e 's/-march=core2//g' bristol/Makefile.*
+perl -pi -e 's/-march=core2//g' libbristol/Makefile.*
+
 %build
-perl -pi -e 's/-march=core2//g' bristol/Makefile.am
-perl -pi -e 's/-march=core2//g' libbristol/Makefile.am
-./configure CONFIG_SHELL=/bin/bash \
-    --prefix=%{_prefix} \
-    --libdir=%{_libdir} \
-    --bindir=%{_bindir} \
-    --with-gnu-ld \
+autoreconf -fi
+%define _disable_ld_no_undefined 1
+%configure2_5x CONFIG_SHELL=/bin/bash \
     --enable-static=no
   
 %make
@@ -557,6 +558,8 @@ perl -pi -e 's/-march=core2//g' libbristol/Makefile.am
 rm -rf %{buildroot}
 
 make BRISTOL_DIR=%{_datadir}/bristol DESTDIR=%{buildroot} install
+
+rm -f %buildroot%_libdir/*.la %buildroot%_libdir/*.so
 
 mkdir -p %{buildroot}/etc/xdg/menus/applications-merged
 cat > %{buildroot}/etc/xdg/menus/applications-merged/%{name}.menu << EOF
