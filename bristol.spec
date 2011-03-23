@@ -1,6 +1,6 @@
 %define name    bristol
-%define version 0.60.6
-%define release %mkrel 2
+%define version 0.60.8
+%define release %mkrel 1
 
 %define major 0
 %define libname %mklibname %{name} %{major}
@@ -12,7 +12,7 @@ Release:    %{release}
 
 URL:        http://%{name}.sourceforge.net/
 Source:     http://prdownloads.sourceforge.net/bristol/%{name}-%{version}.tar.gz
-Patch0:		bristol-0.60.6-link.patch
+Patch0:     bristol-0.60.6-link.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 License:    GPLv2
 Group:      Sound
@@ -30,11 +30,11 @@ Obsoletes:      %{name}-mixer
 Obsoletes:      %{name}-hammond
 
 %description
-Bristol emulates several vintage synthesizers, mainly keyboards: 
+Bristol emulates several vintage synthesizers, mainly keyboards:
 Various Moog, Sequencial Circuits, Oberheim, Arp, Rhodes,
-Yamaha, Roland, Hammond, Korg, and Vox algorithms are provided. 
+Yamaha, Roland, Hammond, Korg, and Vox algorithms are provided.
 Each has its own graphical interface. A central interface is provided
-by Brighton. 
+by Brighton.
 
 #---------------------------------
 %package -n %{libname}
@@ -548,9 +548,10 @@ perl -pi -e 's/-march=core2//g' libbristol/Makefile.*
 %build
 autoreconf -fi
 %define _disable_ld_no_undefined 1
-%configure2_5x CONFIG_SHELL=/bin/bash \
+%configure CONFIG_SHELL=/bin/bash \
+    --disable-version-check \
     --enable-static=no
-  
+
 %make
 
 %install
