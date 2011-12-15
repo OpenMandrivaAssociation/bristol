@@ -1,5 +1,5 @@
 %define name    bristol
-%define version 0.60.8
+%define version 0.60.9
 %define release %mkrel 1
 
 %define major 0
@@ -607,7 +607,7 @@ Type=Application
 Exec=startBristol -jack -autoconn -priority 70 -${synth}
 Terminal=false
 Encoding=UTF-8
-Categories=;X-Bristol
+Categories=X-Bristol;
 EOF
 
 done
