@@ -1,25 +1,21 @@
 %define name    bristol
-%define version 0.60.9
-%define release %mkrel 1
-
 %define major 0
 %define libname %mklibname %{name} %{major}
 
 Name:       %{name}
 Summary:    Synthesizer Emulator Pack
-Version:    %{version}
-Release:    %{release}
+Version:    0.60.9
+Release:    2
 
 URL:        http://%{name}.sourceforge.net/
 Source:     http://prdownloads.sourceforge.net/bristol/%{name}-%{version}.tar.gz
 Patch0:     bristol-0.60.6-link.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 License:    GPLv2
 Group:      Sound
 
 BuildRequires:  libx11-devel
 BuildRequires:  jackit-devel
-BuildRequires:  alsa-lib-devel
+BuildRequires:  pkgconfig(alsa)
 
 Requires:       %{libname} >= %{version}
 Requires:       jackit
@@ -631,3 +627,70 @@ cp bitmaps/bicon.svg %{buildroot}%{_datadir}/pixmaps/
 
 %clean
 rm -rf %{buildroot}
+
+
+%changelog
+* Thu Dec 15 2011 Dmitry Mikhirev <dmikhirev@mandriva.org> 0.60.9-1mdv2012.0
++ Revision: 741503
+- update to 0.60.9
+
+* Wed Mar 23 2011 Frank Kober <emuse@mandriva.org> 0.60.8-1
++ Revision: 648179
+- new version 0.60.8
+
+* Wed Jan 05 2011 Funda Wang <fwang@mandriva.org> 0.60.6-2mdv2011.0
++ Revision: 628673
+- tighten BR
+- partial fix linkage
+
+* Sat Aug 14 2010 Frank Kober <emuse@mandriva.org> 0.60.6-1mdv2011.0
++ Revision: 569591
+- new version 0.60.6
+  o adjust file list
+  o adjust permission fix
+
+  + Funda Wang <fwang@mandriva.org>
+    - update to new version 0.60.5
+
+* Thu Jul 15 2010 Frank Kober <emuse@mandriva.org> 0.60.5-1mdv2011.0
++ Revision: 553529
+- new version 0.60.5
+
+* Thu May 13 2010 Frank Kober <emuse@mandriva.org> 0.60.3-1mdv2010.1
++ Revision: 544715
+- new version 0.60.3 adding CLI and fixing crashes on KDE4
+- manpages added to spec
+
+* Fri Apr 16 2010 Frank Kober <emuse@mandriva.org> 0.50.6-2mdv2010.1
++ Revision: 535353
+- begin lint cleaning, obsolete old desktop pkgs
+
+* Sun Apr 11 2010 Frank Kober <emuse@mandriva.org> 0.50.6-1mdv2010.1
++ Revision: 533599
+- sync sources
+- adjust desktop file list (thanks to Philippe Didier), new version 0.50.6, create submenu entry
+
+* Mon Apr 05 2010 Frank Kober <emuse@mandriva.org> 0.50.5-1mdv2010.1
++ Revision: 531721
+- add missing new item to file list
+- new version 0.50.5
+- new version 0.50.5
+
+* Fri Apr 02 2010 Frank Kober <emuse@mandriva.org> 0.50.3-1mdv2010.1
++ Revision: 530789
+- update to new version 0.50.3
+
+* Sun Mar 28 2010 Frank Kober <emuse@mandriva.org> 0.50.2-3mdv2010.1
++ Revision: 528481
+- do Makefile.am modification BEFORE configure
+
+* Sun Mar 28 2010 Frank Kober <emuse@mandriva.org> 0.50.2-2mdv2010.1
++ Revision: 528475
+- drop patches, use perl to only remove -march flag
+
+* Sun Mar 28 2010 Frank Kober <emuse@mandriva.org> 0.50.2-1mdv2010.1
++ Revision: 528458
+- import bristol, initial specfile provided by Yvan Munoz
+- import bristol
+
+
