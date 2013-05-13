@@ -5,7 +5,7 @@
 Name:       %{name}
 Summary:    Synthesizer Emulator Pack
 Version:    0.60.9
-Release:    2
+Release:    3
 
 URL:        http://%{name}.sourceforge.net/
 Source:     http://prdownloads.sourceforge.net/bristol/%{name}-%{version}.tar.gz
