@@ -13,7 +13,7 @@ Patch0:     bristol-0.60.6-link.patch
 License:    GPLv2
 Group:      Sound
 
-BuildRequires:  libx11-devel
+BuildRequires:  pkgconfig(x11)
 BuildRequires:  jackit-devel
 BuildRequires:  pkgconfig(alsa)
 
