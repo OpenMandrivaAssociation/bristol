@@ -4,11 +4,11 @@
 
 Name:       %{name}
 Summary:    Synthesizer Emulator Pack
-Version:    0.60.9
-Release:    3
+Version:    0.60.11
+Release:    1
 
 URL:        http://%{name}.sourceforge.net/
-Source:     http://prdownloads.sourceforge.net/bristol/%{name}-%{version}.tar.gz
+Source:     https://sourceforge.net/projects/bristol/files/bristol/0.60/%{name}-%{version}.tar.gz
 Patch0:     bristol-0.60.6-link.patch
 License:    GPLv2
 Group:      Sound
@@ -551,7 +551,6 @@ autoreconf -fi
 %make
 
 %install
-rm -rf %{buildroot}
 
 make BRISTOL_DIR=%{_datadir}/bristol DESTDIR=%{buildroot} install
 
@@ -626,7 +625,6 @@ cp bitmaps/bicon.svg %{buildroot}%{_datadir}/pixmaps/
 %config(noreplace) /etc/xdg/menus/applications-merged/%{name}.menu
 
 %clean
-rm -rf %{buildroot}
 
 
 %changelog
@@ -692,5 +690,6 @@ rm -rf %{buildroot}
 + Revision: 528458
 - import bristol, initial specfile provided by Yvan Munoz
 - import bristol
+
 
 
