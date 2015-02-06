@@ -5,7 +5,7 @@
 Name:       %{name}
 Summary:    Synthesizer Emulator Pack
 Version:    0.60.11
-Release:    1
+Release:    2
 
 URL:        http://%{name}.sourceforge.net/
 Source:     https://sourceforge.net/projects/bristol/files/bristol/0.60/%{name}-%{version}.tar.gz
