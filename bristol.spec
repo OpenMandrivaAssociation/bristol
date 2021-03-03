@@ -1,15 +1,17 @@
-%define name    bristol
+%global _disable_lto 1
+%global optflags %{optflags} -fno-common
 %define major 0
 %define libname %mklibname %{name} %{major}
 
-Name:       %{name}
+Name:       bristol
 Summary:    Synthesizer Emulator Pack
 Version:    0.60.11
-Release:    2
+Release:    3
 
 URL:        http://%{name}.sourceforge.net/
 Source:     https://sourceforge.net/projects/bristol/files/bristol/0.60/%{name}-%{version}.tar.gz
-Patch0:     bristol-0.60.6-link.patch
+Patch0:     bristol-remove-legacy-header.patch
+Patch1:     bristol-0.60.11-compile.patch
 License:    GPLv2
 Group:      Sound
 
@@ -532,8 +534,7 @@ Requires: bristol
 #--------------
 
 %prep
-%setup -q
-%patch0 -p1 -b .link
+%autosetup -p1
 chmod  a-x bitmaps/*/*
 chmod  a-x bitmaps/bicon.svg bitmaps/icon_bitmap.xbm
 chmod  a-x COPYING AUTHORS NEWS
