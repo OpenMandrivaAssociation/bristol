@@ -1,5 +1,3 @@
-%global _disable_lto 1
-%global optflags %{optflags} -fno-common
 %define major 0
 %define libname %mklibname %{name} %{major}
 
