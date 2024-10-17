@@ -6,7 +6,7 @@ Summary:    Synthesizer Emulator Pack
 Version:    0.60.11
 Release:    3
 
-URL:        http://%{name}.sourceforge.net/
+URL:        https://%{name}.sourceforge.net/
 Source:     https://sourceforge.net/projects/bristol/files/bristol/0.60/%{name}-%{version}.tar.gz
 Patch0:     bristol-remove-legacy-header.patch
 Patch1:     bristol-0.60.11-compile.patch
